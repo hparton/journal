@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import logo from './logo.svg'
-import './App.css'
 import Tiptap from './Tiptap'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React with hot module in electron!</p>
-        <Tiptap />
-      </header>
+    <div>
+      <div className="title-drag-zone" />
+      <div className="items-top mt-20 justify-center flex h-screen overflow-auto w-screen">
+        <div>
+          <Tiptap />
+        </div>
+      </div>
     </div>
   )
 }

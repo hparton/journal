@@ -7,12 +7,10 @@ module.exports = function createWindow(windowName = 'main', options = {}) {
   const winOptions = {
     minWidth: 800,
     minHeight: 600,
+    name: windowName,
+    icon: __dirname +  '/resources/icon.icns',
     titleBarStyle: 'hidden',
     autoHideMenuBar: true,
-    trafficLightPosition: {
-      x: 20,
-      y: 32,
-    },
     ...options,
     webPreferences: {
       contextIsolation: true,

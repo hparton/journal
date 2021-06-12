@@ -21,6 +21,8 @@ function loadVitePage(port) {
       // do it again as the vite build can take a bit longer the first time
       loadVitePage(port)
     }, 200)
+  }).then(() => {
+    console.log('⚡️ Connected to vite server')
   })
 }
 
