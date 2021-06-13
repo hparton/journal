@@ -10,25 +10,24 @@ module.exports = function createWindow(windowName = 'main', options = {}) {
     name: windowName,
     icon: __dirname +  '/resources/icon.icns',
     titleBarStyle: 'hidden',
-    autoHideMenuBar: true,
     ...options,
     webPreferences: {
       contextIsolation: true,
       devTools: !isProd,
       spellcheck: false,
-      nodeIntegration: true,
+      allowRunningInsecureContent: false,
+      enableRemoteModule: false,
+      nodeIntegration: false,
       ...(options.webPreferences || {}),
     },
   }
 
-  let windowState = windowStateKeeper({
+  const windowState = windowStateKeeper({
     defaultWidth: winOptions.minWidth,
     defaultHeight: winOptions.minHeight,
   })
 
-  let win
-
-  win = new BrowserWindow({
+  const win = new BrowserWindow({
     ...winOptions,
     x: windowState.x,
     y: windowState.y,

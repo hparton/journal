@@ -6,6 +6,7 @@
     "dev": "run-p dev:*",
     "dev:vite": "vite",
     "dev:electron": "electron main/index.js",
+    "debug:sign": "codesign -s - -f node_modules/electron/dist/Electron.app --deep && codesign -s - -f node_modules/electron/dist/Electron.app",
     "build": "run-s build:*",
     "build:vite": "vite build --base=./",
     "build:electron": "electron-builder build",
@@ -54,8 +55,16 @@
     "@tiptap/extension-task-list": "^2.0.0-beta.16",
     "@tiptap/react": "^2.0.0-beta.46",
     "@tiptap/starter-kit": "^2.0.0-beta.77",
+    "cors": "^2.8.5",
     "electron-window-state": "^5.0.3",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "get-port": "^5.1.1",
+    "graphql": "^15.5.0",
+    "graphql-tools": "^7.0.5",
+    "graphql-type-json": "^0.3.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "uuid": "^8.3.2"
   }
 }

@@ -1,5 +1,8 @@
 const createWindow = require('./helpers/create-window.js')
 const { app } = require('electron')
+const path = require('path')
+
+require('./helpers/with-graphql');
 // const resolveConfig = require('tailwindcss/resolveConfig')
 // const tailwindConfig = require('../../tailwind.config')
 // const fullTailwindConfig = resolveConfig(tailwindConfig)
@@ -28,6 +31,9 @@ function loadVitePage(port) {
 
 function createMainWindow() {
   mainWindow = createWindow('main', {
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    },
     // backgroundColor: fullTailwindConfig.theme.colors.primary[800],
     show: false,
   })
