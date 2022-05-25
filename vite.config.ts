@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
+import svgr from '@svgr/rollup'
 
 declare var process : {
   env: {
@@ -14,7 +15,7 @@ export default defineConfig({
     port: process.env.PORT || 3333,
   },
   root: './',
-  plugins: [reactRefresh()],
+  plugins: [reactRefresh(), svgr()],
   optimizeDeps: {
     // exclude path and electron-window-state as we are using the node runtime inside the browser
     // and don't wont vite to complain. If you have any issues importing node packages and vite complains,

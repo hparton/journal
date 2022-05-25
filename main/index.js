@@ -1,11 +1,7 @@
 const createWindow = require('./helpers/create-window.js')
 const { app } = require('electron')
 const path = require('path')
-
-require('./helpers/with-graphql');
-// const resolveConfig = require('tailwindcss/resolveConfig')
-// const tailwindConfig = require('../../tailwind.config')
-// const fullTailwindConfig = resolveConfig(tailwindConfig)
+const { enforceMacOSAppLocation } = require('electron-util')
 
 try {
   require('electron-reloader')(module, {
@@ -34,7 +30,11 @@ function createMainWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     },
-    // backgroundColor: fullTailwindConfig.theme.colors.primary[800],
+    backgroundColor: '#0F0F10',
+    trafficLightPosition: {
+      x: 16,
+      y: 16
+    },
     show: false,
   })
   mainWindow.once('close', () => {
@@ -48,6 +48,11 @@ function createMainWindow() {
     mainWindow.loadFile('dist/index.html')
   }
 
+  mainWindow.webContents.on('new-window', function(e, url) {
+    e.preventDefault();
+    require('electron').shell.openExternal(url);
+  });
+
   // if main window is ready to show, then destroy the splash window and show up the main window
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
@@ -55,7 +60,13 @@ function createMainWindow() {
   })
 }
 
-app.once('ready', createMainWindow)
+app.once('ready', async () => {
+  if (!isDev) {
+    await enforceMacOSAppLocation()
+  }
+  createMainWindow()
+})
+
 app.on('activate', () => {
   if (!mainWindow) {
     createMainWindow()

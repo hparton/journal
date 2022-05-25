@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .title-drag-zone {
   -webkit-app-region: drag;
   height: 22px;
@@ -23,22 +28,251 @@ ul[data-type="taskList"] li {
   padding-left: 0 !important;
 }
 
-ul[data-type="taskList"] li:before {
-  display: none;
-}
-
-ul[data-type="taskList"] li  > label {
+ul[data-type="taskList"] li > label {
   flex: 0 0 auto;
-  margin-right: 0.5rem;
+  margin-right: 0rem;
   margin-top: 0 !important;
 }
 
+ul[data-type="taskList"] li > label {
+  position: relative;
+  cursor: pointer;
+}
 
-ul[data-type="taskList"] li  > div {
+ul[data-type="taskList"] li > label input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+ul[data-type="taskList"] li > label span {
+  border: 1px solid rgb(182, 186, 195);
+  display: block;
+  height: 14px;
+  width: 14px;
+  line-height: 24px;
+  box-sizing: border-box;
+  margin: 6px 8px 0px 0px;
+  user-select: none;
+  border-radius: 3px;
+  appearance: none;
+  background-color: transparent;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: all 80ms ease-out 0s;
+  fill-opacity: 0;
+}
+
+ul[data-type="taskList"] li > label input:checked + span {
+  border: 1px solid #d25e65;
+  background-color: #d25e65;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.0243 3.17574C10.2586 3.41005 10.2586 3.78995 10.0243 4.02426L5.22425 8.82426C4.98994 9.05858 4.61004 9.05858 4.37572 8.82426L1.97572 6.42426C1.74141 6.18995 1.74141 5.81005 1.97572 5.57574C2.21004 5.34142 2.58994 5.34142 2.82425 5.57574L4.79999 7.55147L9.17572 3.17574C9.41004 2.94142 9.78994 2.94142 10.0243 3.17574Z' fill='%23EEEFF1'/%3E%3C/svg%3E%0A");
+}
+
+/* ======= */
+
+
+
+.customCheckbox {
+  flex: 0 0 auto;
+  margin-right: 0rem;
+  margin-top: 0 !important;
+}
+
+.customCheckbox {
+  position: relative;
+  cursor: pointer;
+}
+
+.customCheckbox input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.customCheckbox span {
+  border: 1px solid rgb(182, 186, 195);
+  display: block;
+  height: 14px;
+  width: 14px;
+  line-height: 24px;
+  box-sizing: border-box;
+  user-select: none;
+  border-radius: 3px;
+  appearance: none;
+  background-color: transparent;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: all 80ms ease-out 0s;
+  fill-opacity: 0;
+}
+
+.customCheckbox input:checked + span {
+  border: 1px solid #d25e65;
+  background-color: #d25e65;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.0243 3.17574C10.2586 3.41005 10.2586 3.78995 10.0243 4.02426L5.22425 8.82426C4.98994 9.05858 4.61004 9.05858 4.37572 8.82426L1.97572 6.42426C1.74141 6.18995 1.74141 5.81005 1.97572 5.57574C2.21004 5.34142 2.58994 5.34142 2.82425 5.57574L4.79999 7.55147L9.17572 3.17574C9.41004 2.94142 9.78994 2.94142 10.0243 3.17574Z' fill='%23EEEFF1'/%3E%3C/svg%3E%0A");
+}
+
+/* ======= */
+
+
+ul[data-type="taskList"] li > div {
+  margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
-ul[data-type="taskList"] li  > div > p {
+ul[data-type="taskList"] li > div > p {
   margin-bottom: 0 !important;
   margin-top: 0 !important;
+}
+
+.editor {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.editor h1 {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.editor h2 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.editor h3 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.editor h4 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.editor strong {
+  font-weight: 600;
+  color: white;
+}
+
+.editor i {
+  font-style: italic;
+}
+
+.editor li {
+  margin-top: 0;
+}
+
+.editor ol,
+.editor ul {
+  margin: 0px 0px 1em;
+  padding-left: 1.25em;
+  list-style: outside;
+}
+
+.editor ul[data-type="taskList"] {
+  padding-left: 0;
+}
+
+.ProseMirror > * {
+  margin-bottom: 10px;
+}
+
+.ProseMirror code,
+.ProseMirror pre {
+  font-family: "DM Mono";
+  background-color: rgb(31, 32, 35);
+  padding: 0.2em 0.4em;
+  margin: 0 0.1em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.ProseMirror pre code {
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+  border-radius: initial;
+  font-size: inherit;
+}
+
+.editor a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  opacity: 50%;
+  pointer-events: none;
+  height: 0;
+}
+
+.editor blockquote {
+  margin: 0px 0px 1em;
+  border-left: 2px solid white;
+  padding-left: 1.5em;
+}
+
+.editor pre {
+  margin: 0px 0px 1em;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attr,
+.hljs-tag,
+.hljs-name,
+.hljs-regexp,
+.hljs-link,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #f98181;
+}
+
+.hljs-number,
+.hljs-meta,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params {
+  color: #fbbc88;
+}
+
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet {
+  color: #b9f18d;
+}
+
+.hljs-title,
+.hljs-section {
+  color: #faf594;
+}
+
+.hljs-comment {
+  opacity: 50%;
+}
+
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #70cff8;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
 }

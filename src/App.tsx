@@ -1,39 +1,37 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import logo from './logo.svg'
-import Tiptap from './Tiptap'
+import React, { useEffect, useMemo, useState } from "react";
+import { MemoryRouter, Switch, Route, HashRouter } from "react-router-dom";
 
-declare global {
-  interface Window {
-      app: AppBridge
-  }
-}
-interface AppBridge   {
-    getApiDetails: () => Promise<{
-      port: number,
-      signingKey: string
-    }>,
-    isDesktop: boolean
-}
+import Layout from "./components/ui/Layout";
+import DragArea from "./components/ui/DragArea";
+
+import Editor from "./components/Editor";
+import NoteList from './components/NoteList'
+import SearchNotes from "./components/SearchNotes";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-      window.app.getApiDetails().then(({port, signingKey}) => {
-        console.log({port, signingKey})
-      })
-  }, []);
-
   return (
-    <div>
-      <div className="title-drag-zone" />
-      <div className="items-top mt-20 justify-center flex h-screen overflow-auto w-screen">
-        <div>
-          <Tiptap />
+    <MemoryRouter>
+      <DragArea />
+      <Layout>
+        <div className="w-full h-full items-center justify-center flex">
+          <Switch>
+            <Route path="/notes/:id" exact>
+              <Editor />
+            </Route>
+            <Route path="/" exact>
+              <NoteList />
+            </Route>
+            <Route path="/search">
+              <SearchNotes />
+            </Route>
+            <Route>
+              <p>How did you get here?</p>
+            </Route>
+          </Switch>
         </div>
-      </div>
-    </div>
-  )
+      </Layout>
+    </MemoryRouter>
+  );
 }
 
-export default App
+export default App;
